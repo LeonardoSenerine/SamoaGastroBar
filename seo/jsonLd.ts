@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 import { agendaDeExemplo, proximosEventos } from '../src/data/eventos.ts'
-import { contato, funcionamento } from '../src/data/site.ts'
+import { contato, funcionamento, geo } from '../src/data/site.ts'
 
 const FUSO = '-03:00'
 
@@ -22,8 +22,10 @@ function restaurante() {
       streetAddress: contato.endereco,
       addressLocality: contato.cidade,
       addressRegion: contato.estado,
+      postalCode: geo.cep,
       addressCountry: 'BR',
     },
+    geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng },
     openingHoursSpecification: funcionamento
       .filter((f) => f.schema)
       .map((f) => ({

@@ -15,7 +15,7 @@ export function Hero() {
           <h1 className="hero__titulo">
             <span className="sobretitulo">Samoa Gastrobar · Itatiba, SP</span>{' '}
             <span className="hero__slogan">
-              Chega com fome.{' '}
+              <span className="hero__linha">Chega com fome.</span>{' '}
               <span className="script">Fica pela noite.</span>
             </span>
           </h1>
@@ -36,11 +36,11 @@ export function Hero() {
       </div>
 
       <div className="hero__midia">
-        <Flor className="hero__flor" />
+        <Flor className="hero__flor" data-parallax="-0.12" />
         <div className="hero__video">
           <video ref={video} src={loops.hero.src} poster={loops.hero.poster} muted loop playsInline preload="auto" aria-label="Noite de festa no Samoa" />
         </div>
-        <figure className="hero__cartao">
+        <figure className="hero__cartao" data-parallax="0.1">
           <img src={fotos.drinks} alt="Quatro drinks autorais sobre a mesa" />
           <figcaption>
             <span className="script">brindes</span> autorais

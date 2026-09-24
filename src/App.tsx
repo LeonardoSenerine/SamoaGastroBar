@@ -15,11 +15,14 @@ import { ChamadaFinal } from './components/ChamadaFinal'
 import { Visite } from './components/Visite'
 import { Rodape } from './components/Rodape'
 import { AcoesFixas } from './components/AcoesFixas'
+import { Letreiro } from './components/Letreiro'
 import { useReveal } from './hooks/useReveal'
+import { useParallax } from './hooks/useParallax'
 
 // Ordem pensada para decidir a visita: atmosfera → comida → drinks → ambiente → música → ação
 export default function App() {
   useReveal()
+  useParallax()
 
   return (
     <>
@@ -28,11 +31,13 @@ export default function App() {
         <Hero />
         <HojeTemMusica />
         <Diferenciais />
+        <Letreiro />
         <Cardapio />
         <Drinks />
         <Espaco />
         <Numeros />
         <Shows />
+        <Letreiro invertido />
         <Agenda />
         <Palco />
         <Galeria />

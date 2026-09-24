@@ -2,6 +2,7 @@ import { fotos } from '../data/midia'
 import { mapa } from '../data/site'
 import { Flor } from './Flor'
 import { Icone } from './Icone'
+import { atraso } from '../util/atraso'
 
 const ambientes = [
   { titulo: 'Container verde', texto: 'A flor amarela pintada na lataria virou cartão-postal.' },
@@ -13,13 +14,13 @@ export function Espaco() {
   return (
     <section id="espaco" className="espaco">
       <div className="espaco__mosaico">
-        <img className="revelar" src={fotos.areaExterna} alt="Área externa com guarda-sóis e o container verde com a flor do Samoa" loading="lazy" />
-        <img className="revelar" src={fotos.containerNoite} alt="Container com o logo Samoa iluminado à noite" loading="lazy" />
-        <img className="revelar" src={fotos.eventoLotado} alt="Escadaria e tenda lotadas em dia de evento ao entardecer" loading="lazy" />
+        <img className="revelar revelar--cortina" src={fotos.areaExterna} alt="Área externa com guarda-sóis e o container verde com a flor do Samoa" loading="lazy" />
+        <img className="revelar revelar--cortina" style={atraso(150)} src={fotos.containerNoite} alt="Container com o logo Samoa iluminado à noite" loading="lazy" />
+        <img className="revelar revelar--cortina" style={atraso(300)} src={fotos.eventoLotado} alt="Escadaria e tenda lotadas em dia de evento ao entardecer" loading="lazy" />
       </div>
 
       <div className="espaco__painel">
-        <Flor className="espaco__flor" variante="linha" />
+        <Flor className="espaco__flor" variante="linha" data-parallax="0.12" />
         <div className="revelar">
           <p className="script script--grande">conheça</p>
           <h2>A melhor casinha de Itatiba</h2>

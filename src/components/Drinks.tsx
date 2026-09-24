@@ -10,11 +10,11 @@ export function Drinks() {
     <section id="drinks" className="drinks">
       <div className="container drinks__grade">
         <div className="drinks__midia revelar">
-          <Flor className="drinks__flor" />
+          <Flor className="drinks__flor" data-parallax="-0.1" />
           <div className="drinks__video">
             <video ref={video} src={loops.drink.src} poster={loops.drink.poster} muted loop playsInline preload="none" aria-label="Preparo de uma caipirinha no bar do Samoa" />
           </div>
-          <img className="drinks__foto" src={fotos.drinks} alt="Quatro drinks autorais sobre a mesa" loading="lazy" />
+          <img className="drinks__foto" data-parallax="0.08" src={fotos.drinks} alt="Quatro drinks autorais sobre a mesa" loading="lazy" />
         </div>
 
         <div className="drinks__texto revelar">

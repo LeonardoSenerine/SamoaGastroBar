@@ -1,6 +1,7 @@
 import { fotos } from '../data/midia'
 import { contato } from '../data/site'
 import { Icone } from './Icone'
+import { atraso } from '../util/atraso'
 
 const imagens = [
   { src: fotos.containerLogo, alt: 'Container verde com a flor amarela e o logo Samoa Gastrobar' },
@@ -29,8 +30,8 @@ export function Galeria() {
         </header>
       </div>
       <ul className="galeria__grade">
-        {imagens.map((i) => (
-          <li key={i.src}>
+        {imagens.map((i, n) => (
+          <li key={i.src} className="revelar revelar--zoom" style={atraso((n % 4) * 90)}>
             <a href={contato.instagram} target="_blank" rel="noreferrer" aria-label={`${i.alt} — abrir Instagram`}>
               <img src={i.src} alt={i.alt} loading="lazy" />
             </a>

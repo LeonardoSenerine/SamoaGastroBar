@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { videos, type Video } from '../data/midia'
 import { Icone } from './Icone'
+import { atraso } from '../util/atraso'
 
 const formatos = ['Roda de samba', 'Pagode', 'DJ sets', 'Voz e violão', 'Festas temáticas']
 
-function CartaoVideo({ video, onAbrir }: { video: Video; onAbrir: () => void }) {
+function CartaoVideo({ video, indice, onAbrir }: { video: Video; indice: number; onAbrir: () => void }) {
   const ref = useRef<HTMLVideoElement>(null)
 
   // prévia muda ao passar o mouse; o arquivo só carrega quando alguém demonstra interesse
@@ -15,7 +16,7 @@ function CartaoVideo({ video, onAbrir }: { video: Video; onAbrir: () => void }) 
   const pausar = () => ref.current?.pause()
 
   return (
-    <li className="video-cartao revelar">
+    <li className="video-cartao revelar revelar--zoom" style={atraso(indice * 110)}>
       <button onClick={onAbrir} onMouseEnter={tocar} onMouseLeave={pausar} onFocus={tocar} onBlur={pausar} aria-label={`Assistir ${video.titulo}`}>
         <video ref={ref} src={video.src} poster={video.poster} muted loop playsInline preload="none" tabIndex={-1} />
         <span className="video-cartao__play">
@@ -82,8 +83,8 @@ export function Shows() {
         </header>
 
         <ul className="videos">
-          {videos.map((v) => (
-            <CartaoVideo key={v.id} video={v} onAbrir={() => setAberto(v)} />
+          {videos.map((v, i) => (
+            <CartaoVideo key={v.id} video={v} indice={i} onAbrir={() => setAberto(v)} />
           ))}
         </ul>
 

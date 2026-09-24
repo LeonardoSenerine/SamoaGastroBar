@@ -13,9 +13,19 @@ const links = [
 export function Header() {
   const [aberto, setAberto] = useState(false)
   const [rolou, setRolou] = useState(false)
+  const [oculto, setOculto] = useState(false)
 
+  // some ao descer (mais tela para o conteúdo) e volta assim que o visitante sobe
   useEffect(() => {
-    const aoRolar = () => setRolou(window.scrollY > 40)
+    let anterior = window.scrollY
+    const aoRolar = () => {
+      const y = window.scrollY
+      setRolou(y > 40)
+      if (Math.abs(y - anterior) > 6) {
+        setOculto(y > anterior && y > 400)
+        anterior = y
+      }
+    }
     aoRolar()
     window.addEventListener('scroll', aoRolar, { passive: true })
     return () => window.removeEventListener('scroll', aoRolar)
@@ -28,7 +38,7 @@ export function Header() {
   const fechar = () => setAberto(false)
 
   return (
-    <header className={`header ${rolou ? 'header--solido' : ''} ${aberto ? 'header--aberto' : ''}`}>
+    <header className={`header ${rolou ? 'header--solido' : ''} ${aberto ? 'header--aberto' : ''} ${oculto && !aberto ? 'header--oculto' : ''}`}>
       <div className="header__barra container">
         <a href="#inicio" aria-label="Samoa Gastrobar — início" onClick={fechar}>
           <Logo />

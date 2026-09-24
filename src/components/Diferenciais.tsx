@@ -1,4 +1,5 @@
 import { Icone, type NomeIcone } from './Icone'
+import { atraso } from '../util/atraso'
 
 const itens: { icone: NomeIcone; titulo: string; texto: string }[] = [
   { icone: 'musica', titulo: 'Música ao vivo', texto: 'Samba, pagode, DJ e voz e violão.' },
@@ -18,8 +19,8 @@ export function Diferenciais() {
           <h2>Por que todo mundo vem pro Samoa</h2>
         </header>
         <ul className="diferenciais__lista">
-          {itens.map((i) => (
-            <li key={i.titulo} className="revelar">
+          {itens.map((i, n) => (
+            <li key={i.titulo} className="revelar" style={atraso(n * 90)}>
               <span className="diferenciais__icone">
                 <Icone nome={i.icone} />
               </span>

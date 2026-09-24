@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { cardapio, categorias, preco, type CategoriaCardapio } from '../data/cardapio'
 import { contato } from '../data/site'
 import { Icone } from './Icone'
+import { atraso } from '../util/atraso'
 
 const destaques = cardapio.filter((i) => i.foto && i.selo)
 
@@ -23,8 +24,8 @@ export function Cardapio() {
 
         {/* destaques com foto */}
         <ul className="pratos" aria-label="Destaques da casa">
-          {destaques.map((p) => (
-            <li key={p.nome} className="prato">
+          {destaques.map((p, i) => (
+            <li key={p.nome} className="prato revelar revelar--zoom" style={atraso(i * 110)}>
               <div className="prato__foto">
                 <img src={p.foto} alt={p.nome} loading="lazy" />
                 {p.selo && <span className="prato__tag">{p.selo}</span>}

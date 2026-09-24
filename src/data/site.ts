@@ -16,11 +16,16 @@ export const contato = {
   cardapioJanta: 'https://www.canva.com/design/DAG-ZSnH28M/rhMwyFAmPNFK1hGSJ2FhtQ/view',
 }
 
-// busca pelo endereço, não pelo nome: existe um "Samoa" homônimo fora do Brasil
-const enderecoBusca = encodeURIComponent(`${contato.endereco}, Jardim São Luís, Itatiba - SP`)
+/**
+ * Coordenadas do pino oficial do Samoa no Google Maps. O mapa usa a coordenada direto,
+ * sem busca: pelo nome aparece um "Samoa" homônimo fora do Brasil, e pelo endereço
+ * erra porque o Google cadastrou a rua como "Av.".
+ */
+export const geo = { lat: -23.013859, lng: -46.8315465, cep: '13253-090' }
+
 export const mapa = {
-  embed: `https://maps.google.com/maps?q=${enderecoBusca}&z=16&output=embed`,
-  rotas: `https://www.google.com/maps/dir/?api=1&destination=${enderecoBusca}`,
+  embed: `https://maps.google.com/maps?q=${geo.lat},${geo.lng}&z=17&hl=pt-BR&output=embed`,
+  rotas: `https://www.google.com/maps/dir/?api=1&destination=${geo.lat},${geo.lng}`,
 }
 
 export const whatsappUrl = (mensagem = 'Olá, Samoa! Gostaria de reservar uma mesa.') =>
