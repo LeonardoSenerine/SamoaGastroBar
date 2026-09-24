@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { fotos } from '../data/midia'
+import { aoAparecer } from '../util/aoAparecer'
 import { atraso } from '../util/atraso'
 
 interface Numero {
@@ -19,30 +20,26 @@ const numeros: Numero[] = [
 /** Conta de 0 até o valor quando entra na tela (valor final direto se "reduzir movimento"). */
 function Contador({ valor, casas = 0, sufixo }: Numero) {
   const ref = useRef<HTMLElement>(null)
-  const [semAnimacao] = useState(
-    () => !window.matchMedia('(prefers-reduced-motion: no-preference)').matches || !('IntersectionObserver' in window),
-  )
+  const [semAnimacao] = useState(() => !window.matchMedia('(prefers-reduced-motion: no-preference)').matches)
   const [atual, setAtual] = useState(semAnimacao ? valor : 0)
 
   useEffect(() => {
     const el = ref.current
     if (!el || semAnimacao) return
     let quadro = 0
-    const observer = new IntersectionObserver(([entrada]) => {
-      if (!entrada.isIntersecting) return
-      observer.disconnect()
+    const parar = aoAparecer([el], () => {
       const inicio = performance.now()
-      const passo = (agora: number) => {
-        const t = Math.min((agora - inicio) / 1600, 1)
+      const passo = () => {
+        const t = Math.min((performance.now() - inicio) / 1600, 1)
         setAtual(valor * (1 - Math.pow(1 - t, 3)))
-        if (t < 1) quadro = requestAnimationFrame(passo)
+        // setTimeout (~60 fps) em vez de requestAnimationFrame: garante que chega no valor final
+        if (t < 1) quadro = window.setTimeout(passo, 16)
       }
-      quadro = requestAnimationFrame(passo)
+      passo()
     })
-    observer.observe(el)
     return () => {
-      observer.disconnect()
-      cancelAnimationFrame(quadro)
+      parar()
+      clearTimeout(quadro)
     }
   }, [valor, semAnimacao])
 

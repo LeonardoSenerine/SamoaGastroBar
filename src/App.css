@@ -2606,8 +2606,8 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* ----- entradas ao rolar ----- */
-  .revelar {
+  /* ----- entradas ao rolar (só escondem com .js-animar, colocada pelo main.tsx) ----- */
+  .js-animar .revelar {
     opacity: 0;
   }
 
@@ -2619,7 +2619,7 @@
     animation-name: entrar-zoom;
   }
 
-  .revelar--cortina {
+  .js-animar .revelar--cortina {
     opacity: 1;
     clip-path: inset(100% 0 0 0);
   }
