@@ -1,15 +1,16 @@
+import { abrirPreferencias } from '../consentimento'
 import { contato, whatsappUrl } from '../data/site'
 import { Flor } from './Flor'
 import { Logo } from './Logo'
 import { Icone } from './Icone'
 
 const navegacao = [
-  { href: '#cardapio', label: 'Cardápio' },
-  { href: '#drinks', label: 'Drinks' },
-  { href: '#shows', label: 'Música ao vivo' },
-  { href: '#agenda', label: 'Agenda' },
-  { href: '#palco', label: 'Eventos fechados' },
-  { href: '#visite', label: 'Como chegar' },
+  { href: '/#cardapio', label: 'Cardápio' },
+  { href: '/#drinks', label: 'Drinks' },
+  { href: '/#shows', label: 'Música ao vivo' },
+  { href: '/#agenda', label: 'Agenda' },
+  { href: '/#palco', label: 'Eventos fechados' },
+  { href: '/#visite', label: 'Como chegar' },
 ]
 
 export function Rodape() {
@@ -59,9 +60,18 @@ export function Rodape() {
           </ul>
         </div>
       </div>
-      <p className="container rodape__legal">
-        © {new Date().getFullYear()} Samoa Gastrobar · {contato.endereco}, {contato.bairro} · Beba com moderação.
-      </p>
+      <div className="container rodape__legal">
+        <p>
+          © {new Date().getFullYear()} Samoa Gastrobar · {contato.endereco}, {contato.bairro} · Beba com moderação.
+        </p>
+        <nav className="rodape__politicas" aria-label="Políticas">
+          <a href="/privacidade">Política de privacidade</a>
+          <a href="/cookies">Política de cookies</a>
+          <button type="button" onClick={abrirPreferencias}>
+            Preferências de cookies
+          </button>
+        </nav>
+      </div>
     </footer>
   )
 }

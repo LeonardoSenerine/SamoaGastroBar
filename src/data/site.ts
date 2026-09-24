@@ -1,3 +1,15 @@
+/**
+ * Dados legais usados nas políticas de privacidade e de cookies.
+ * TODO: preencher com os dados reais da empresa (cada linha só aparece no site quando preenchida).
+ */
+export const empresa = {
+  razaoSocial: '',
+  cnpj: '',
+  emailPrivacidade: '',
+  /** data da última revisão das políticas */
+  atualizacao: '24 de setembro de 2026',
+}
+
 export const contato = {
   nome: 'Samoa Gastrobar',
   endereco: 'Rua Olga Tarrusselo Geromel, 201',

@@ -3,11 +3,11 @@ import { whatsappUrl } from '../data/site'
 import { Logo } from './Logo'
 
 const links = [
-  { href: '#cardapio', label: 'Cardápio' },
-  { href: '#drinks', label: 'Drinks' },
-  { href: '#espaco', label: 'O Espaço' },
-  { href: '#agenda', label: 'Agenda' },
-  { href: '#visite', label: 'Como chegar' },
+  { href: '/#cardapio', label: 'Cardápio' },
+  { href: '/#drinks', label: 'Drinks' },
+  { href: '/#espaco', label: 'O Espaço' },
+  { href: '/#agenda', label: 'Agenda' },
+  { href: '/#visite', label: 'Como chegar' },
 ]
 
 export function Header() {
@@ -40,7 +40,7 @@ export function Header() {
   return (
     <header className={`header ${rolou ? 'header--solido' : ''} ${aberto ? 'header--aberto' : ''} ${oculto && !aberto ? 'header--oculto' : ''}`}>
       <div className="header__barra container">
-        <a href="#inicio" aria-label="Samoa Gastrobar — início" onClick={fechar}>
+        <a href="/" aria-label="Samoa Gastrobar, início" onClick={fechar}>
           <Logo />
         </a>
 

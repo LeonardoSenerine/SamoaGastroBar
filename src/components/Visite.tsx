@@ -1,8 +1,11 @@
+import { salvarConsentimento, useConsentimento } from '../consentimento'
 import { contato, funcionamento, mapa, whatsappUrl } from '../data/site'
 import { Flor } from './Flor'
 import { Icone } from './Icone'
 
 export function Visite() {
+  const { consentimento } = useConsentimento()
+
   return (
     <section id="visite" className="visite">
       <div className="visite__painel">
@@ -42,7 +45,24 @@ export function Visite() {
       </div>
 
       <div className="visite__mapa">
-        <iframe title="Mapa do Samoa Gastrobar" src={mapa.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+        {/* o Google grava cookies: o mapa só carrega com consentimento */}
+        {consentimento?.mapas ? (
+          <iframe title="Mapa do Samoa Gastrobar" src={mapa.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+        ) : (
+          <div className="mapa-bloqueado">
+            <Icone nome="pin" className="mapa-bloqueado__icone" />
+            <p className="mapa-bloqueado__titulo">Mapa do Google desligado</p>
+            <p>O Google Maps grava cookies no seu navegador, então ele só aparece com a sua permissão.</p>
+            <div className="mapa-bloqueado__acoes">
+              <button className="botao botao--pequeno" onClick={() => salvarConsentimento(true)}>
+                Permitir e carregar mapa
+              </button>
+              <a className="botao botao--claro botao--pequeno" href={mapa.rotas} target="_blank" rel="noreferrer">
+                Abrir no Google Maps
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

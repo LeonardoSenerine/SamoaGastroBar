@@ -12,7 +12,7 @@ if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
 const root = document.getElementById('root')!
 const app = (
   <StrictMode>
-    <App />
+    <App caminho={window.location.pathname} />
   </StrictMode>
 )
 

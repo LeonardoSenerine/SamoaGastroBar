@@ -37,6 +37,23 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). A Vercel det
 > ⚠️ **Dados fictícios.** Agenda, preços, nomes de pratos e drinks e o horário noturno são exemplos.
 > Troque pelos dados reais antes de divulgar o site.
 
+## Páginas, cookies e LGPD
+
+| Página | Endereço | Arquivo |
+| --- | --- | --- |
+| Início | `/` | `src/paginas/Inicio.tsx` |
+| Política de privacidade | `/privacidade` | `src/paginas/Privacidade.tsx` |
+| Política de cookies | `/cookies` | `src/paginas/Cookies.tsx` |
+| Página não encontrada | qualquer outro endereço (`404.html`) | `src/paginas/NaoEncontrada.tsx` |
+
+- A lista de páginas (título, descrição, se entra no Google) fica em `src/paginas.ts`; cada uma vira um HTML
+  próprio no build. O `vercel.json` liga `cleanUrls`, então `/cookies` entrega `cookies.html`.
+- **Consentimento de cookies** (`src/consentimento.ts` + `src/components/AvisoCookies.tsx`): o site não usa
+  cookies de rastreamento; o único terceiro que grava cookies é o mapa do Google, que **só carrega depois do
+  aceite**. A escolha fica no navegador por 12 meses e pode ser mudada em "Preferências de cookies", no rodapé.
+- Preencha razão social, CNPJ e e-mail de privacidade em `empresa`, no `src/data/site.ts`. Cada linha só
+  aparece nas políticas quando estiver preenchida.
+
 ## SEO e compartilhamento
 
 - **HTML pré-renderizado no build** (`src/entry-server.tsx` + `scripts/prerender.mjs`): WhatsApp, Instagram,
