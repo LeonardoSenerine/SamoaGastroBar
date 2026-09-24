@@ -17,15 +17,17 @@ const numeros: Numero[] = [
   { valor: 6, sufixo: ' dias', rotulo: 'por semana, de terça a domingo' },
 ]
 
-/** Conta de 0 até o valor quando entra na tela (valor final direto se "reduzir movimento"). */
+/**
+ * Conta de 0 até o valor quando entra na tela. O HTML pré-renderizado já traz o valor final
+ * (bom para buscadores e para quem pediu "reduzir movimento").
+ */
 function Contador({ valor, casas = 0, sufixo }: Numero) {
   const ref = useRef<HTMLElement>(null)
-  const [semAnimacao] = useState(() => !window.matchMedia('(prefers-reduced-motion: no-preference)').matches)
-  const [atual, setAtual] = useState(semAnimacao ? valor : 0)
+  const [atual, setAtual] = useState(valor)
 
   useEffect(() => {
     const el = ref.current
-    if (!el || semAnimacao) return
+    if (!el || !window.matchMedia('(prefers-reduced-motion: no-preference)').matches) return
     let quadro = 0
     const parar = aoAparecer([el], () => {
       const inicio = performance.now()
@@ -41,7 +43,7 @@ function Contador({ valor, casas = 0, sufixo }: Numero) {
       parar()
       clearTimeout(quadro)
     }
-  }, [valor, semAnimacao])
+  }, [valor])
 
   const texto = atual.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas })
   return (

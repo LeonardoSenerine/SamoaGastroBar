@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { proximosEventos, type Categoria, type Evento } from '../data/eventos'
 import { contato, whatsappUrl } from '../data/site'
+import { useAgora } from '../hooks/useAgora'
 
 const dia = new Intl.DateTimeFormat('pt-BR', { day: '2-digit' })
 const mes = new Intl.DateTimeFormat('pt-BR', { month: 'short' })
@@ -41,7 +42,7 @@ function CartaoEvento({ evento }: { evento: Evento }) {
 
 export function Agenda() {
   const [filtro, setFiltro] = useState<Categoria | 'Todos'>('Todos')
-  const [agora] = useState(() => Date.now())
+  const agora = useAgora()
 
   const proximos = useMemo(() => proximosEventos(agora), [agora])
 

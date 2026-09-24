@@ -37,13 +37,19 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). A Vercel det
 > ⚠️ **Dados fictícios.** Agenda, preços, nomes de pratos e drinks e o horário noturno são exemplos.
 > Troque pelos dados reais antes de divulgar o site.
 
-## SEO
+## SEO e compartilhamento
 
-- `<title>`, descrição e Open Graph ficam no `index.html` (a imagem de compartilhamento é `public/og-samoa-v2.jpg`).
-- O plugin `seo/jsonLd.ts` gera o Schema.org no build: `Restaurant`/`BarOrPub` com endereço e horários
-  e um `MusicEvent` para cada show futuro de `eventos.ts`.
+- **HTML pré-renderizado no build** (`src/entry-server.tsx` + `scripts/prerender.mjs`): WhatsApp, Instagram,
+  Facebook, buscadores e leitores de tela recebem a página completa sem rodar JavaScript; no navegador o React
+  só assume a página (hidratação).
+- `public/og-image.jpg` (1200×630) é a prévia do link. `<title>`, descrição e tags Open Graph ficam no `index.html`;
+  `%SITE_URL%` é preenchido no build por `seo/siteMeta.ts` (na Vercel usa o endereço de produção; com domínio
+  próprio, crie a variável de ambiente `SITE_URL`, ex.: `https://samoagastrobar.com.br`, e publique de novo).
+- `seo/siteMeta.ts` também gera o Schema.org (`Restaurant`/`BarOrPub` + um `MusicEvent` por show), `robots.txt`
+  e `sitemap.xml`.
 - Enquanto `agendaDeExemplo = true` (em `src/data/eventos.ts`), os eventos **não** entram no JSON-LD, para o
   Google não indexar shows fictícios. Mude para `false` quando cadastrar a agenda real.
+- Ícones PNG (`icon-192`, `icon-512`, `apple-touch-icon`) e `site.webmanifest` em `public/`.
 
 ## Mídia
 

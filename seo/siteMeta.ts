@@ -19,7 +19,8 @@ function restaurante() {
     url: `${SITE_URL}/`,
     name: contato.nome,
     description: 'Gastrobar em Itatiba com almoço executivo, petiscos, drinks autorais e música ao vivo. Pet friendly.',
-    image: `${SITE_URL}/og-samoa-v2.jpg`,
+    image: `${SITE_URL}/og-image.jpg`,
+    logo: `${SITE_URL}/icon-512.png`,
     telephone: contato.telefone,
     priceRange: '$$',
     servesCuisine: ['Brasileira', 'Petiscos', 'Hambúrguer', 'Massas'],
@@ -71,10 +72,13 @@ function eventosSchema() {
   }))
 }
 
-/** Troca %SITE_URL% no index.html e injeta os dados estruturados (Schema.org) no <head>. */
-export function jsonLd(): Plugin {
+/**
+ * Metadados que precisam do endereço completo do site: troca %SITE_URL% no index.html, injeta os
+ * dados estruturados (Schema.org) e gera robots.txt e sitemap.xml.
+ */
+export function siteMeta(): Plugin {
   return {
-    name: 'samoa-json-ld',
+    name: 'samoa-site-meta',
     transformIndexHtml(html) {
       const blocos = [restaurante(), ...eventosSchema()]
       return {
@@ -86,6 +90,23 @@ export function jsonLd(): Plugin {
           injectTo: 'head' as const,
         })),
       }
+    },
+    // robots.txt e sitemap.xml gerados no build, já com o endereço certo
+    generateBundle() {
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+      })
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source:
+          '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+          `  <url><loc>${SITE_URL}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>\n` +
+          '</urlset>\n',
+      })
     },
   }
 }

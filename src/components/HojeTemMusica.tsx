@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { proximosEventos } from '../data/eventos'
+import { useAgora } from '../hooks/useAgora'
 
 const semana = new Intl.DateTimeFormat('pt-BR', { weekday: 'short' })
 const diaMes = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' })
@@ -9,7 +9,7 @@ const mesmoDia = (a: Date, b: Date) => a.toDateString() === b.toDateString()
 
 /** Faixa logo abaixo do topo com os dois próximos shows da agenda. */
 export function HojeTemMusica() {
-  const [agora] = useState(() => Date.now())
+  const agora = useAgora()
   const proximos = proximosEventos(agora).slice(0, 2)
   if (proximos.length === 0) return null
 
