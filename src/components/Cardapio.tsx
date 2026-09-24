@@ -7,7 +7,7 @@ import { atraso } from '../util/atraso'
 const destaques = cardapio.filter((i) => i.foto && i.selo)
 
 export function Cardapio() {
-  const [aba, setAba] = useState<CategoriaCardapio>('Petiscos')
+  const [aba, setAba] = useState<CategoriaCardapio>('Massas')
   const itens = cardapio.filter((i) => i.categoria === aba)
   const subtitulo = categorias.find((c) => c.nome === aba)?.subtitulo
 
@@ -18,7 +18,7 @@ export function Cardapio() {
           <p className="script script--grande">boa comida é só o começo</p>
           <h2>O que dá vontade hoje?</h2>
           <p className="cabecalho__intro">
-            Petiscos para dividir, almoço executivo, massas e burgers. Tudo feito na casa.
+            Almoço com massas, parmegianas e feijoada; à noite, burgers artesanais e porções para dividir. Preços do cardápio oficial.
           </p>
         </header>
 
@@ -35,7 +35,7 @@ export function Cardapio() {
                   <h3>{p.nome}</h3>
                   <span className="prato__preco">{preco.format(p.preco)}</span>
                 </div>
-                <p>{p.descricao}</p>
+                {p.descricao && <p>{p.descricao}</p>}
               </div>
             </li>
           ))}
@@ -72,7 +72,7 @@ export function Cardapio() {
                     <span className="menu__pontos" aria-hidden="true" />
                     <span className="menu__preco">{preco.format(i.preco)}</span>
                   </div>
-                  <p>{i.descricao}</p>
+                  {i.descricao && <p>{i.descricao}</p>}
                 </li>
               ))}
             </ul>

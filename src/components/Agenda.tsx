@@ -31,9 +31,14 @@ function CartaoEvento({ evento }: { evento: Evento }) {
         <p className="evento__descricao">{evento.descricao}</p>
       </div>
       <div className="evento__acao">
-        <span className="evento__preco">{evento.preco ? moeda.format(evento.preco) : 'Entrada livre'}</span>
+        {/* valor só aparece quando a casa informou; nada de "entrada livre" presumida */}
+        {evento.preco ? (
+          <span className="evento__preco">{moeda.format(evento.preco)}</span>
+        ) : evento.entradaLivre ? (
+          <span className="evento__preco">Entrada livre</span>
+        ) : null}
         <a className="botao botao--pequeno" href={link} target="_blank" rel="noreferrer">
-          {evento.ingresso ? 'Ingressos' : 'Reservar'}
+          {evento.ingresso ? 'Ingressos' : 'Reservar mesa'}
         </a>
       </div>
     </li>

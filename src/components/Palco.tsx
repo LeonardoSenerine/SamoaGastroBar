@@ -30,7 +30,7 @@ export function Palco() {
         <div className="palco__fotos">
           <img className="revelar revelar--cortina" src={fotos.eventoLotado} alt="Escadaria e tenda lotadas em dia de evento ao entardecer" loading="lazy" />
           <img className="revelar revelar--cortina" style={atraso(150)} src={fotos.publicoSelfie} alt="Amigas tirando selfie sob o guarda-sol Spaten" loading="lazy" />
-          <img className="revelar revelar--cortina" style={atraso(300)} src={fotos.publicoAmigas} alt="Amigas brindando com chopp" loading="lazy" />
+          <img className="revelar revelar--cortina" style={atraso(300)} src={fotos.publicoAmigas} alt="Amigas brindando com cerveja" loading="lazy" />
         </div>
       </div>
     </section>

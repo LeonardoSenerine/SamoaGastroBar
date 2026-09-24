@@ -2,9 +2,9 @@ import { Icone, type NomeIcone } from './Icone'
 import { atraso } from '../util/atraso'
 
 const itens: { icone: NomeIcone; titulo: string; texto: string }[] = [
-  { icone: 'musica', titulo: 'Música ao vivo', texto: 'Samba, pagode, DJ e voz e violão.' },
+  { icone: 'musica', titulo: 'Música ao vivo', texto: 'Sertanejo, pagode e samba no fim de semana.' },
   { icone: 'drink', titulo: 'Drinks autorais', texto: 'Carta própria e caipirinhas no capricho.' },
-  { icone: 'chopp', titulo: 'Bar Spaten', texto: 'Chopp e long necks sempre gelados.' },
+  { icone: 'chopp', titulo: 'Bar Spaten', texto: 'Spaten, long necks e doses bem geladas.' },
   { icone: 'prato', titulo: 'Almoço executivo', texto: 'Terça a domingo, das 11h às 15h.' },
   { icone: 'sol', titulo: 'Ao ar livre', texto: 'Terraço, container e área externa.' },
   { icone: 'pata', titulo: 'Pet friendly', texto: 'Seu cachorro também é bem-vindo.' },

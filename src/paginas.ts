@@ -18,7 +18,7 @@ export const paginas: Pagina[] = [
     arquivo: 'index.html',
     titulo: 'Samoa Gastrobar | Restaurante, Drinks e Música ao Vivo em Itatiba',
     descricao:
-      'Gastrobar em Itatiba (SP) com almoço executivo de terça a domingo, petiscos, burgers, drinks autorais, chopp Spaten e música ao vivo. Pet friendly. Rua Olga Tarrusselo Geromel, 201, Jardim São Luís.',
+      'Gastrobar em Itatiba (SP) com almoço executivo de terça a domingo, petiscos, burgers, drinks autorais, cerveja Spaten e música ao vivo. Pet friendly. Rua Olga Tarrusselo Geromel, 201, Jardim São Luís.',
     indexar: true,
   },
   {

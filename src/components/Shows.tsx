@@ -3,7 +3,7 @@ import { videos, type Video } from '../data/midia'
 import { Icone } from './Icone'
 import { atraso } from '../util/atraso'
 
-const formatos = ['Roda de samba', 'Pagode', 'DJ sets', 'Voz e violão', 'Festas temáticas']
+const formatos = ['Sertanejo', 'Pagode', 'Samba', 'DJ', 'Festas temáticas']
 
 function CartaoVideo({ video, indice, onAbrir }: { video: Video; indice: number; onAbrir: () => void }) {
   const ref = useRef<HTMLVideoElement>(null)

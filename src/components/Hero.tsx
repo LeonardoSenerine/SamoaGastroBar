@@ -21,7 +21,7 @@ export function Hero() {
           </h1>
           <p className="hero__lead">
             Restaurante, drinks e música ao vivo na casinha verde do Jardim São Luís. Almoço de terça a domingo,
-            noites de samba e pagode, e o seu cachorro também é bem-vindo.
+            música ao vivo no fim de semana, e o seu cachorro também é bem-vindo.
           </p>
           <div className="hero__acoes">
             <a className="botao" href="#cardapio">

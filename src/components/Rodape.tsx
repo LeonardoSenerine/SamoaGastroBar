@@ -48,6 +48,9 @@ export function Rodape() {
               </a>
             </li>
             <li>
+              <a href={contato.telefoneLink}>Reservas {contato.telefoneLabel}</a>
+            </li>
+            <li>
               <a href={contato.ifood} target="_blank" rel="noreferrer">
                 iFood
               </a>

@@ -18,7 +18,10 @@ export const contato = {
   estado: 'SP',
   whatsapp: '5511924892615',
   whatsappLabel: '(11) 92489-2615',
-  telefone: '+55-11-92489-2615',
+  /** telefone oficial (Google e cardápio: "para reservas e pedidos") */
+  telefoneLabel: '(11) 91149-1852',
+  telefone: '+55-11-91149-1852',
+  telefoneLink: 'tel:+5511911491852',
   instagram: 'https://www.instagram.com/samoagastrobar_',
   instagramHandle: '@samoagastrobar_',
   ifood:
@@ -44,12 +47,18 @@ export const whatsappUrl = (mensagem = 'Olá, Samoa! Gostaria de reservar uma me
   `https://wa.me/${contato.whatsapp}?text=${encodeURIComponent(mensagem)}`
 
 /**
- * DADOS FICTÍCIOS no horário noturno — confirmar com a casa antes de publicar.
+ * Horário de funcionamento (conforme o perfil do Samoa no Google).
  * `schema` alimenta o JSON-LD (dias em inglês, como pede o Schema.org).
  */
+const terçaADomingo = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 export const funcionamento = [
-  { dia: 'Terça a domingo', hora: 'Almoço · 11h às 15h', schema: { dias: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], abre: '11:00', fecha: '15:00' } },
-  { dia: 'Quinta a sábado', hora: 'Noite · 18h à 01h', schema: { dias: ['Thursday', 'Friday', 'Saturday'], abre: '18:00', fecha: '01:00' } },
-  { dia: 'Domingo', hora: 'Tarde · 15h às 22h', schema: { dias: ['Sunday'], abre: '15:00', fecha: '22:00' } },
+  { dia: 'Terça a domingo', hora: 'Almoço · 11h às 15h', schema: { dias: terçaADomingo, abre: '11:00', fecha: '15:00' } },
+  { dia: 'Terça a domingo', hora: 'Noite · 18h à 00h', schema: { dias: terçaADomingo, abre: '18:00', fecha: '23:59' } },
   { dia: 'Segunda', hora: 'Fechado', schema: null },
 ]
+
+/**
+ * Enquanto for `false`, o site pede para buscadores NÃO indexarem nenhuma página (noindex).
+ * Troque para `true` quando o Samoa aprovar o site e ele for para o domínio oficial.
+ */
+export const liberadoParaGoogle = false

@@ -34,8 +34,12 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). A Vercel det
 | Endereço, WhatsApp, links e horários | `src/data/site.ts` |
 | Fotos e vídeos | `src/assets/midia/` + `src/data/midia.ts` |
 
-> ⚠️ **Dados fictícios.** Agenda, preços, nomes de pratos e drinks e o horário noturno são exemplos.
-> Troque pelos dados reais antes de divulgar o site.
+> **Fontes dos dados.** Cardápio e preços: PDFs oficiais do Linktree (set/2026). Agenda: posts do Instagram
+> @samoagastrobar_. Horário e telefone: perfil do Samoa no Google. Atualize a agenda toda semana em
+> `src/data/eventos.ts`.
+>
+> **Fora do Google até a aprovação.** Enquanto `liberadoParaGoogle = false` (em `src/data/site.ts`), todas as
+> páginas saem com `noindex`. Troque para `true` quando o Samoa aprovar e o site for para o domínio oficial.
 
 ## Páginas, cookies e LGPD
 

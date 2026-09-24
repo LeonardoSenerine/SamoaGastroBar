@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 import { agendaDeExemplo, proximosEventos } from '../src/data/eventos.ts'
-import { contato, funcionamento, geo } from '../src/data/site.ts'
+import { contato, funcionamento, geo, liberadoParaGoogle } from '../src/data/site.ts'
 import { paginas } from '../src/paginas.ts'
 
 const FUSO = '-03:00'
@@ -63,13 +63,18 @@ function eventosSchema() {
     performer: { '@type': 'PerformingGroup', name: e.atracao },
     location: { '@id': `${SITE_URL}/#samoa` },
     organizer: { '@type': 'Organization', name: contato.nome, url: contato.instagram },
-    offers: {
-      '@type': 'Offer',
-      price: e.preco ?? 0,
-      priceCurrency: 'BRL',
-      availability: 'https://schema.org/InStock',
-      url: e.ingresso ?? contato.instagram,
-    },
+    // oferta só quando há preço informado ou entrada livre confirmada
+    ...(e.preco || e.entradaLivre
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: e.preco ?? 0,
+            priceCurrency: 'BRL',
+            availability: 'https://schema.org/InStock',
+            url: e.ingresso ?? contato.instagram,
+          },
+        }
+      : {}),
   }))
 }
 
@@ -83,7 +88,13 @@ export function siteMeta(): Plugin {
     transformIndexHtml(html) {
       const blocos = [restaurante(), ...eventosSchema()]
       return {
-        html: html.replaceAll('%SITE_URL%', SITE_URL),
+        html: html
+          .replaceAll('%SITE_URL%', SITE_URL)
+          // até o Samoa aprovar, nenhuma página entra no Google (ver liberadoParaGoogle)
+          .replace(
+            '<meta name="robots" content="index, follow" />',
+            `<meta name="robots" content="${liberadoParaGoogle ? 'index, follow' : 'noindex, nofollow'}" />`,
+          ),
         tags: blocos.map((b) => ({
           tag: 'script',
           attrs: { type: 'application/ld+json' },
@@ -98,7 +109,8 @@ export function siteMeta(): Plugin {
       this.emitFile({
         type: 'asset',
         fileName: 'robots.txt',
-        source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+        // Allow de propósito: o buscador precisa conseguir ler o noindex das páginas
+        source: liberadoParaGoogle ? `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n` : 'User-agent: *\nAllow: /\n',
       })
       this.emitFile({
         type: 'asset',

@@ -45,7 +45,7 @@ export function Espaco() {
             </span>
             <div>
               <h3>Bar pet friendly em Itatiba</h3>
-              <p>Traga seu cachorro: tem água fresquinha e espaço ao ar livre para ele curtir junto.</p>
+              <p>Traga seu cachorro: o Samoa é pet friendly e tem bastante espaço ao ar livre.</p>
             </div>
           </aside>
           <a className="botao" href={mapa.rotas} target="_blank" rel="noreferrer">

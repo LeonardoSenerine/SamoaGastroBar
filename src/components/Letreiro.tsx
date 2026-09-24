@@ -1,6 +1,6 @@
 import { Flor } from './Flor'
 
-const frases = ['Música ao vivo', 'Drinks autorais', 'Almoço executivo', 'Chopp Spaten', 'Pet friendly', 'Samba & pagode', 'Petiscos pra dividir']
+const frases = ['Música ao vivo', 'Drinks autorais', 'Almoço executivo', 'Bar Spaten', 'Pet friendly', 'Sertanejo & pagode', 'Burgers artesanais']
 
 /** Faixa de texto rolando sem parar (para no hover e some o movimento com "reduzir movimento"). */
 export function Letreiro({ invertido = false }: { invertido?: boolean }) {

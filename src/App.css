@@ -3373,3 +3373,16 @@
     grid-column: 1 / -1;
   }
 }
+
+.visite__telefone {
+  margin: -12px 0 24px 40px;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.visite__telefone a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--amarelo);
+}

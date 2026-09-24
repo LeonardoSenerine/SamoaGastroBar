@@ -1,11 +1,11 @@
 import { fotos } from './midia'
 
-export type CategoriaCardapio = 'Petiscos' | 'Pratos' | 'Lanches' | 'Sobremesas'
+export type CategoriaCardapio = 'Massas' | 'Parmegianas' | 'Pratos' | 'Burgers' | 'Porções' | 'Sobremesas'
 
 export interface ItemCardapio {
   nome: string
   categoria: CategoriaCardapio
-  descricao: string
+  descricao?: string
   /** Preço em reais */
   preco: number
   foto?: string
@@ -14,37 +14,76 @@ export interface ItemCardapio {
 }
 
 export const categorias: { nome: CategoriaCardapio; subtitulo: string }[] = [
-  { nome: 'Petiscos', subtitulo: 'Para dividir com a mesa' },
-  { nome: 'Pratos', subtitulo: 'Almoço e pratos principais' },
-  { nome: 'Lanches', subtitulo: 'Burgers no capricho' },
+  { nome: 'Massas', subtitulo: 'No almoço, de terça a domingo' },
+  { nome: 'Parmegianas', subtitulo: 'No almoço, com arroz branco e batata frita' },
+  { nome: 'Pratos', subtitulo: 'No almoço: bifes, frango, feijoada e saladas' },
+  { nome: 'Burgers', subtitulo: 'À noite, no pão brioche com hambúrguer artesanal' },
+  { nome: 'Porções', subtitulo: 'À noite, para dividir com a mesa' },
   { nome: 'Sobremesas', subtitulo: 'Para fechar a conta feliz' },
 ]
 
-/** DADOS FICTÍCIOS (nomes, descrições e preços) — substitua pelo cardápio oficial. */
+const comArrozESalada = 'Acompanha arroz branco e salada.'
+const comArrozEFritas = 'Acompanha arroz branco e batata frita.'
+const comArrozFeijaoFritas = 'Acompanha arroz branco, feijão e batata frita.'
+
+/**
+ * Cardápio oficial do Samoa (PDFs "Cardápio almoço" e "Cardápio janta" do Linktree, setembro/2026).
+ * Atualize aqui quando os preços mudarem.
+ */
 export const cardapio: ItemCardapio[] = [
-  // Petiscos
-  { nome: 'Torresmo de rolo', categoria: 'Petiscos', descricao: 'Pururucado na hora, com limão e molho da casa.', preco: 38 },
-  { nome: 'Fritas com cheddar e bacon', categoria: 'Petiscos', descricao: 'Porção generosa com cheddar cremoso e bacon crocante.', preco: 36 },
-  { nome: 'Bolinho de feijoada', categoria: 'Petiscos', descricao: '8 unidades com geleia de pimenta e couve crispy.', preco: 34 },
-  { nome: 'Isca de tilápia', categoria: 'Petiscos', descricao: 'Empanada na farinha panko, com molho tártaro.', preco: 52 },
-  { nome: 'Calabresa acebolada', categoria: 'Petiscos', descricao: 'Na chapa, com cebola roxa e pão de alho.', preco: 42 },
+  // Massas (almoço)
+  { nome: 'Macarrão à carbonara', categoria: 'Massas', descricao: 'Massa, bacon, ovos e queijo parmesão.', preco: 46, foto: fotos.baldeCarbonara, selo: 'Almoço' },
+  { nome: 'Rondelli de presunto e queijo', categoria: 'Massas', descricao: comArrozESalada, preco: 32 },
+  { nome: 'Rondelli de ricota com espinafre', categoria: 'Massas', descricao: comArrozESalada, preco: 32 },
+  { nome: 'Canelone de presunto e queijo', categoria: 'Massas', descricao: comArrozESalada, preco: 32 },
+  { nome: 'Canelone de dois queijos', categoria: 'Massas', descricao: comArrozESalada, preco: 32 },
+  { nome: 'Macarrão com frango à milanesa', categoria: 'Massas', descricao: 'Massa, molho vermelho caseiro e frango à milanesa.', preco: 32 },
 
-  // Pratos
-  { nome: 'Almoço executivo', categoria: 'Pratos', descricao: 'Terça a domingo, 11h às 15h. Prato do dia com arroz, feijão, salada e acompanhamentos.', preco: 32.9, foto: fotos.feijoadaMesa, selo: 'Almoço' },
-  { nome: 'Feijoada da casa', categoria: 'Pratos', descricao: 'Aos sábados e domingos. Servida no barro com arroz, couve, torresmo e farofa.', preco: 49.9, foto: fotos.feijoada, selo: 'Fim de semana' },
-  { nome: 'Pappardelle ao ragu', categoria: 'Pratos', descricao: 'Massa larga, ragu de carne cozido por horas, tomate-cereja e ricota.', preco: 58, foto: fotos.pratoAssinatura, selo: 'Assinatura' },
-  { nome: 'Rondelli de 2 queijos', categoria: 'Pratos', descricao: 'Recheio cremoso, molho branco e parmesão ralado na hora.', preco: 52, foto: fotos.rondelli },
-  { nome: 'Espaguete com bacon', categoria: 'Pratos', descricao: 'Molho cremoso, bacon crocante e manjericão fresco.', preco: 46, foto: fotos.baldeCarbonara },
+  // Parmegianas (almoço)
+  { nome: 'Parmegiana de frango', categoria: 'Parmegianas', descricao: comArrozEFritas, preco: 34 },
+  { nome: 'Parmegiana de contra filé', categoria: 'Parmegianas', descricao: comArrozEFritas, preco: 38 },
+  { nome: 'Parmegiana de tilápia', categoria: 'Parmegianas', descricao: comArrozEFritas, preco: 39 },
+  { nome: 'Parmegiana de filé mignon', categoria: 'Parmegianas', descricao: comArrozEFritas, preco: 54 },
 
-  // Lanches
-  { nome: 'Burger da casa', categoria: 'Lanches', descricao: 'Blend 180 g, queijo derretido, cebola caramelizada e fritas no pão brioche.', preco: 39.9, foto: fotos.burger, selo: 'Mais pedido' },
-  { nome: 'Smash duplo', categoria: 'Lanches', descricao: 'Dois smashes de 90 g, cheddar, picles e maionese da casa.', preco: 36 },
-  { nome: 'Burger vegetariano', categoria: 'Lanches', descricao: 'Hambúrguer de grão-de-bico, queijo prato e salada.', preco: 34 },
+  // Pratos (almoço)
+  { nome: 'Feijoada', categoria: 'Pratos', descricao: 'Quarta e sábado. Acompanha arroz branco, couve refogada, vinagrete e farofa.', preco: 36, foto: fotos.feijoada, selo: 'Quarta e sábado' },
+  { nome: 'Bife a cavalo', categoria: 'Pratos', descricao: comArrozFeijaoFritas, preco: 34 },
+  { nome: 'Bife acebolado', categoria: 'Pratos', descricao: comArrozFeijaoFritas, preco: 34 },
+  { nome: 'Bife ao molho madeira', categoria: 'Pratos', descricao: 'Acompanha arroz branco, purê de batata e salada.', preco: 37 },
+  { nome: 'Bife à milanesa', categoria: 'Pratos', descricao: comArrozFeijaoFritas, preco: 29 },
+  { nome: 'Filé de frango grelhado', categoria: 'Pratos', descricao: 'Acompanha arroz branco, feijão e salada.', preco: 29 },
+  { nome: 'Filé de frango com legumes', categoria: 'Pratos', descricao: 'Acompanha purê de batata.', preco: 33 },
+  { nome: 'Salada individual', categoria: 'Pratos', descricao: 'Alface, tomate e rúcula.', preco: 14 },
+  { nome: 'Salada grande', categoria: 'Pratos', descricao: 'Alface, tomate e rúcula.', preco: 29 },
+
+  // Burgers (noite)
+  { nome: 'Samoa Supremo', categoria: 'Burgers', descricao: 'Pão brioche, hambúrguer artesanal, maionese caseira, queijo, bacon, alface, tomate e cebola caramelizada.', preco: 37, foto: fotos.burger, selo: 'Noite' },
+  { nome: 'Samoa Burguer', categoria: 'Burgers', descricao: 'Pão brioche, hambúrguer artesanal, maionese caseira e queijo.', preco: 26 },
+  { nome: 'Samoa Bacon', categoria: 'Burgers', descricao: 'Pão brioche, hambúrguer artesanal, maionese caseira, queijo, bacon, alface, tomate e cebola roxa.', preco: 35 },
+  { nome: 'Samoa Cheddar', categoria: 'Burgers', descricao: 'Pão brioche, hambúrguer artesanal, maionese caseira, cheddar, alface, tomate e cebola.', preco: 36 },
+  { nome: 'Samoa Fresh', categoria: 'Burgers', descricao: 'Pão francês, hambúrguer artesanal, maionese caseira, queijo, rúcula e cebola roxa.', preco: 36 },
+  { nome: 'Samoa Turbo', categoria: 'Burgers', descricao: 'Pão brioche, 2 hambúrgueres artesanais, maionese caseira, queijo, bacon, alface, tomate e cebola roxa.', preco: 59 },
+
+  // Porções (noite)
+  { nome: 'Torresmo', categoria: 'Porções', preco: 39, foto: fotos.torresmo, selo: 'Para dividir' },
+  { nome: 'Batata frita', categoria: 'Porções', preco: 28 },
+  { nome: 'Batata frita com cheddar e bacon', categoria: 'Porções', preco: 38 },
+  { nome: 'Calabresa acebolada', categoria: 'Porções', descricao: 'Acompanha pão francês.', preco: 27 },
+  { nome: 'Anéis de cebola', categoria: 'Porções', preco: 30 },
+  { nome: 'Polenta frita', categoria: 'Porções', preco: 33 },
+  { nome: 'Tábua de frios P', categoria: 'Porções', preco: 29 },
+  { nome: 'Isca de frango', categoria: 'Porções', preco: 44 },
+  { nome: 'Tilápia', categoria: 'Porções', preco: 69 },
+  { nome: 'Contra filé', categoria: 'Porções', descricao: 'Acompanha pão francês.', preco: 79 },
+  { nome: 'Filé mignon', categoria: 'Porções', descricao: 'Acompanha pão francês.', preco: 109 },
 
   // Sobremesas
-  { nome: 'Petit gâteau', categoria: 'Sobremesas', descricao: 'Com sorvete de creme e calda de chocolate.', preco: 26 },
-  { nome: 'Pudim da casa', categoria: 'Sobremesas', descricao: 'Receita de família, sem furinhos.', preco: 18 },
-  { nome: 'Brownie com sorvete', categoria: 'Sobremesas', descricao: 'Brownie quentinho, sorvete e farofa de castanha.', preco: 24 },
+  { nome: 'Petit gateau', categoria: 'Sobremesas', preco: 25 },
+  { nome: 'Pudim no copo', categoria: 'Sobremesas', preco: 16 },
+  { nome: 'Taça de sorvete', categoria: 'Sobremesas', preco: 22 },
+  { nome: 'Mousse de chocolate', categoria: 'Sobremesas', preco: 12 },
+  { nome: 'Mousse de maracujá', categoria: 'Sobremesas', preco: 12 },
+  { nome: 'Mousse de limão', categoria: 'Sobremesas', preco: 12 },
 ]
 
 export interface Drink {
@@ -53,14 +92,16 @@ export interface Drink {
   preco: number
 }
 
-/** DADOS FICTÍCIOS — substitua pela carta de drinks oficial. */
+/** Carta oficial de drinks e cervejas (mesma fonte do cardápio). */
 export const drinks: Drink[] = [
-  { nome: 'Samoa Tropical', descricao: 'Rum, maracujá, limão-siciliano e hortelã. O drink da casa.', preco: 32 },
-  { nome: 'Caipirinha no capricho', descricao: 'Limão cortado na hora, cachaça ou vodka.', preco: 24 },
-  { nome: 'Gin tônica cítrica', descricao: 'Gin, tônica, laranja-bahia e pimenta rosa.', preco: 34 },
-  { nome: 'Mojito', descricao: 'Rum branco, hortelã, limão e água com gás.', preco: 30 },
-  { nome: 'Chopp Spaten 400 ml', descricao: 'Sempre gelado, direto da chopeira.', preco: 16 },
-  { nome: 'Balde 5 long necks', descricao: 'Spaten, Stella Artois ou Original.', preco: 55 },
+  { nome: 'Drink Samoa', descricao: 'Aperol, sprite, gin e laranja. O drink da casa.', preco: 36 },
+  { nome: 'Caipirinha tradicional', descricao: 'Abacaxi, limão, morango ou kiwi.', preco: 34 },
+  { nome: 'Caipirinha de vinho', descricao: 'Abacaxi ou limão.', preco: 38 },
+  { nome: 'Gin tropical', descricao: 'Gin, laranja e Red Bull tropical.', preco: 33 },
+  { nome: 'Solar spritz', descricao: 'Campari, suco de laranja e água com gás.', preco: 36 },
+  { nome: '43 Spritz', descricao: 'Licor 43, limão, sprite e hortelã.', preco: 39 },
+  { nome: 'Citrus fresh (sem álcool)', descricao: 'Limão, laranja, água com gás e hortelã.', preco: 32 },
+  { nome: 'Spaten 600 ml', descricao: 'O Samoa é bar Spaten. Também tem Original, Stella e long necks.', preco: 18 },
 ]
 
 export const preco = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })

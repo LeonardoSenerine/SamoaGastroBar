@@ -22,10 +22,13 @@ export function Visite() {
               {contato.bairro}
             </span>
           </address>
+          <p className="visite__telefone">
+            Reservas e pedidos: <a href={contato.telefoneLink}>{contato.telefoneLabel}</a>
+          </p>
 
           <dl className="horarios">
             {funcionamento.map((h) => (
-              <div key={h.dia}>
+              <div key={h.dia + h.hora}>
                 <dt>{h.dia}</dt>
                 <dd>{h.hora}</dd>
               </div>

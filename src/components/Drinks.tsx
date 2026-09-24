@@ -21,7 +21,7 @@ export function Drinks() {
           <p className="script script--grande">se for pra brindar,</p>
           <h2>Que seja no Samoa!</h2>
           <p>
-            Clássicos, autorais e chopp gelado para prolongar a noite. Limão cortado na hora e aquele primeiro gole
+            Caipirinhas, spritz, drinks da casa e cerveja Spaten gelada para prolongar a noite. Limão cortado na hora e aquele primeiro gole
             enquanto o som começa lá no terraço.
           </p>
           <ul className="carta">
