@@ -39,7 +39,7 @@ Importe o repositório em [vercel.com/new](https://vercel.com/new). A Vercel det
 
 ## SEO
 
-- `<title>`, descrição e Open Graph ficam no `index.html` (a imagem de compartilhamento é `public/og-samoa.jpg`).
+- `<title>`, descrição e Open Graph ficam no `index.html` (a imagem de compartilhamento é `public/og-samoa-v2.jpg`).
 - O plugin `seo/jsonLd.ts` gera o Schema.org no build: `Restaurant`/`BarOrPub` com endereço e horários
   e um `MusicEvent` para cada show futuro de `eventos.ts`.
 - Enquanto `agendaDeExemplo = true` (em `src/data/eventos.ts`), os eventos **não** entram no JSON-LD, para o

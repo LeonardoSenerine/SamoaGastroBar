@@ -19,7 +19,7 @@ function restaurante() {
     url: `${SITE_URL}/`,
     name: contato.nome,
     description: 'Gastrobar em Itatiba com almoço executivo, petiscos, drinks autorais e música ao vivo. Pet friendly.',
-    image: `${SITE_URL}/og-samoa.jpg`,
+    image: `${SITE_URL}/og-samoa-v2.jpg`,
     telephone: contato.telefone,
     priceRange: '$$',
     servesCuisine: ['Brasileira', 'Petiscos', 'Hambúrguer', 'Massas'],
