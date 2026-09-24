@@ -1,14 +1,15 @@
 import { contato, whatsappUrl } from '../data/site'
 import { Flor } from './Flor'
-import { Logo } from './Header'
+import { Logo } from './Logo'
 import { Icone } from './Icone'
 
 const navegacao = [
-  { href: '#espaco', label: 'O Espaço' },
   { href: '#cardapio', label: 'Cardápio' },
-  { href: '#shows', label: 'Shows' },
+  { href: '#drinks', label: 'Drinks' },
+  { href: '#shows', label: 'Música ao vivo' },
   { href: '#agenda', label: 'Agenda' },
-  { href: '#visite', label: 'Visite' },
+  { href: '#palco', label: 'Eventos fechados' },
+  { href: '#visite', label: 'Como chegar' },
 ]
 
 export function Rodape() {

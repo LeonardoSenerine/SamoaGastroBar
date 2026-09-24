@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react'
 import { whatsappUrl } from '../data/site'
+import { Logo } from './Logo'
 
 const links = [
-  { href: '#espaco', label: 'O Espaço' },
   { href: '#cardapio', label: 'Cardápio' },
-  { href: '#shows', label: 'Shows' },
+  { href: '#drinks', label: 'Drinks' },
+  { href: '#espaco', label: 'O Espaço' },
   { href: '#agenda', label: 'Agenda' },
-  { href: '#visite', label: 'Visite' },
+  { href: '#visite', label: 'Como chegar' },
 ]
-
-export function Logo({ grande = false }: { grande?: boolean }) {
-  return (
-    <span className={`logo ${grande ? 'logo--grande' : ''}`}>
-      <span className="logo__nome">samoa</span>
-      <span className="logo__sub">gastrobar</span>
-    </span>
-  )
-}
 
 export function Header() {
   const [aberto, setAberto] = useState(false)

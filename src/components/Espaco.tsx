@@ -1,5 +1,5 @@
 import { fotos } from '../data/midia'
-import { contato } from '../data/site'
+import { mapa } from '../data/site'
 import { Flor } from './Flor'
 import { Icone } from './Icone'
 
@@ -38,7 +38,16 @@ export function Espaco() {
               </li>
             ))}
           </ol>
-          <a className="botao" href={contato.rotas} target="_blank" rel="noreferrer">
+          <aside className="pet">
+            <span className="pet__icone">
+              <Icone nome="pata" />
+            </span>
+            <div>
+              <h3>Bar pet friendly em Itatiba</h3>
+              <p>Traga seu cachorro: tem água fresquinha e espaço ao ar livre para ele curtir junto.</p>
+            </div>
+          </aside>
+          <a className="botao" href={mapa.rotas} target="_blank" rel="noreferrer">
             <Icone nome="pin" className="botao__icone" />
             Como chegar
           </a>

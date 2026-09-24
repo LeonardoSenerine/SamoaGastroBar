@@ -1,4 +1,4 @@
-import { contato, horarios, whatsappUrl } from '../data/site'
+import { contato, funcionamento, mapa, whatsappUrl } from '../data/site'
 import { Flor } from './Flor'
 import { Icone } from './Icone'
 
@@ -9,7 +9,7 @@ export function Visite() {
         <Flor className="visite__flor" variante="linha" />
         <div className="revelar">
           <p className="script script--grande">alô, samoa!</p>
-          <h2>Venha nos visitar</h2>
+          <h2>Encontre o Samoa</h2>
 
           <address className="visite__endereco">
             <Icone nome="pin" className="visite__icone" />
@@ -21,7 +21,7 @@ export function Visite() {
           </address>
 
           <dl className="horarios">
-            {horarios.map((h) => (
+            {funcionamento.map((h) => (
               <div key={h.dia}>
                 <dt>{h.dia}</dt>
                 <dd>{h.hora}</dd>
@@ -34,15 +34,15 @@ export function Visite() {
               <Icone nome="whatsapp" className="botao__icone" />
               Reservar pelo WhatsApp
             </a>
-            <a className="botao botao--claro" href={contato.rotas} target="_blank" rel="noreferrer">
-              Como chegar
+            <a className="botao botao--claro" href={mapa.rotas} target="_blank" rel="noreferrer">
+              Abrir no Google Maps
             </a>
           </div>
         </div>
       </div>
 
       <div className="visite__mapa">
-        <iframe title="Mapa do Samoa Gastrobar" src={contato.mapa} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+        <iframe title="Mapa do Samoa Gastrobar" src={mapa.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
       </div>
     </section>
   )

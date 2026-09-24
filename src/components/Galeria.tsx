@@ -3,14 +3,14 @@ import { contato } from '../data/site'
 import { Icone } from './Icone'
 
 const imagens = [
-  { src: fotos.publicoAmigas, alt: 'Amigas brindando com chopp em dia de evento' },
   { src: fotos.containerLogo, alt: 'Container verde com a flor amarela e o logo Samoa Gastrobar' },
-  { src: fotos.publicoSelfie, alt: 'Grupo de amigas tirando selfie sob o guarda-sol Spaten' },
   { src: fotos.burger, alt: 'Burger com fritas: “Vem curtir o Samoa com música boa e lanche no capricho”' },
   { src: fotos.publicoTrio, alt: 'Trio de amigos sorrindo na área externa' },
   { src: fotos.bannerSpaten, alt: 'Painel Samoa Gastrobar e Spaten ao entardecer' },
   { src: fotos.noite, alt: 'Terraço lotado à noite sob o varal de luzes' },
   { src: fotos.rondelli, alt: 'Rondelli de dois queijos com manjericão' },
+  { src: fotos.drink, alt: 'Drink cítrico em frente ao painel “Se for pra brindar, que seja no Samoa!”' },
+  { src: fotos.fachada, alt: 'Casa verde de dois andares ao pôr do sol' },
 ]
 
 export function Galeria() {

@@ -1,19 +1,23 @@
 import './App.css'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
+import { HojeTemMusica } from './components/HojeTemMusica'
 import { Diferenciais } from './components/Diferenciais'
-import { Espaco } from './components/Espaco'
 import { Cardapio } from './components/Cardapio'
 import { Drinks } from './components/Drinks'
+import { Espaco } from './components/Espaco'
 import { Numeros } from './components/Numeros'
 import { Shows } from './components/Shows'
 import { Agenda } from './components/Agenda'
+import { Palco } from './components/Palco'
 import { Galeria } from './components/Galeria'
+import { ChamadaFinal } from './components/ChamadaFinal'
 import { Visite } from './components/Visite'
 import { Rodape } from './components/Rodape'
-import { BarraMobile } from './components/BarraMobile'
+import { AcoesFixas } from './components/AcoesFixas'
 import { useReveal } from './hooks/useReveal'
 
+// Ordem pensada para decidir a visita: atmosfera → comida → drinks → ambiente → música → ação
 export default function App() {
   useReveal()
 
@@ -22,18 +26,21 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <HojeTemMusica />
         <Diferenciais />
-        <Espaco />
         <Cardapio />
         <Drinks />
+        <Espaco />
         <Numeros />
         <Shows />
         <Agenda />
+        <Palco />
         <Galeria />
+        <ChamadaFinal />
         <Visite />
       </main>
       <Rodape />
-      <BarraMobile />
+      <AcoesFixas />
     </>
   )
 }

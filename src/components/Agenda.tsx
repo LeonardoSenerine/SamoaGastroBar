@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { eventos, type Categoria, type Evento } from '../data/eventos'
+import { proximosEventos, type Categoria, type Evento } from '../data/eventos'
 import { contato, whatsappUrl } from '../data/site'
 
 const dia = new Intl.DateTimeFormat('pt-BR', { day: '2-digit' })
@@ -26,6 +26,7 @@ function CartaoEvento({ evento }: { evento: Evento }) {
           </span>
         </p>
         <h3>{evento.titulo}</h3>
+        <p className="evento__atracao">{evento.atracao}</p>
         <p className="evento__descricao">{evento.descricao}</p>
       </div>
       <div className="evento__acao">
@@ -42,11 +43,7 @@ export function Agenda() {
   const [filtro, setFiltro] = useState<Categoria | 'Todos'>('Todos')
   const [agora] = useState(() => Date.now())
 
-  const proximos = useMemo(() => {
-    return eventos
-      .filter((e) => new Date(e.data).getTime() + 6 * 3600_000 > agora)
-      .sort((a, b) => a.data.localeCompare(b.data))
-  }, [agora])
+  const proximos = useMemo(() => proximosEventos(agora), [agora])
 
   const categorias = useMemo(
     () => ['Todos', ...new Set(proximos.map((e) => e.categoria))] as const,
