@@ -3306,3 +3306,70 @@
 .rodape__politicas button:hover {
   color: var(--amarelo);
 }
+
+/* =========================================================
+   Celular: cardápio e tipos de evento sem cortes
+   ========================================================= */
+@media (max-width: 760px) {
+  /* abas do cardápio: grade 2×2, todas visíveis (sem rolagem lateral) */
+  .menu .abas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow: visible;
+    margin: 0 0 4px;
+    padding: 0;
+  }
+
+  .menu .aba {
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  /* nome pode quebrar linha; preço fica no topo, à direita */
+  .menu__linha {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .menu__linha h3 {
+    flex: 1;
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+
+  .menu__pontos {
+    display: none;
+  }
+
+  .menu__preco {
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+
+  /* tipos de evento: cards iguais em 2 colunas */
+  .selos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .selos li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .selos li::before {
+    margin-right: 0;
+  }
+
+  .selos li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
