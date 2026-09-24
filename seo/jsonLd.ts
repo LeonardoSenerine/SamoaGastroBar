@@ -4,19 +4,27 @@ import { contato, funcionamento, geo } from '../src/data/site.ts'
 
 const FUSO = '-03:00'
 
+/**
+ * URL pública do site, usada nas meta tags de compartilhamento (que exigem endereço absoluto).
+ * Ordem: variável SITE_URL (domínio próprio) → domínio de produção da Vercel → padrão.
+ */
+const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL
+const SITE_URL = (process.env.SITE_URL ?? (vercel ? `https://${vercel}` : 'https://samoa-gastro-bar.vercel.app')).replace(/\/$/, '')
+
 function restaurante() {
   return {
     '@context': 'https://schema.org',
     '@type': ['Restaurant', 'BarOrPub'],
-    '@id': '#samoa',
+    '@id': `${SITE_URL}/#samoa`,
+    url: `${SITE_URL}/`,
     name: contato.nome,
     description: 'Gastrobar em Itatiba com almoço executivo, petiscos, drinks autorais e música ao vivo. Pet friendly.',
-    image: '/og-samoa.jpg',
+    image: `${SITE_URL}/og-samoa.jpg`,
     telephone: contato.telefone,
     priceRange: '$$',
     servesCuisine: ['Brasileira', 'Petiscos', 'Hambúrguer', 'Massas'],
     acceptsReservations: true,
-    hasMenu: '#cardapio',
+    hasMenu: `${SITE_URL}/#cardapio`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: contato.endereco,
@@ -51,7 +59,7 @@ function eventosSchema() {
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     performer: { '@type': 'PerformingGroup', name: e.atracao },
-    location: { '@id': '#samoa' },
+    location: { '@id': `${SITE_URL}/#samoa` },
     organizer: { '@type': 'Organization', name: contato.nome, url: contato.instagram },
     offers: {
       '@type': 'Offer',
@@ -63,18 +71,21 @@ function eventosSchema() {
   }))
 }
 
-/** Injeta os dados estruturados (Schema.org) no <head> durante o build e o dev. */
+/** Troca %SITE_URL% no index.html e injeta os dados estruturados (Schema.org) no <head>. */
 export function jsonLd(): Plugin {
   return {
     name: 'samoa-json-ld',
-    transformIndexHtml() {
+    transformIndexHtml(html) {
       const blocos = [restaurante(), ...eventosSchema()]
-      return blocos.map((b) => ({
-        tag: 'script',
-        attrs: { type: 'application/ld+json' },
-        children: JSON.stringify(b).replace(/</g, '\\u003c'),
-        injectTo: 'head',
-      }))
+      return {
+        html: html.replaceAll('%SITE_URL%', SITE_URL),
+        tags: blocos.map((b) => ({
+          tag: 'script',
+          attrs: { type: 'application/ld+json' },
+          children: JSON.stringify(b).replace(/</g, '\\u003c'),
+          injectTo: 'head' as const,
+        })),
+      }
     },
   }
 }
