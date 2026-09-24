@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { pratos, type CategoriaPrato } from '../data/cardapio'
 import { contato } from '../data/site'
+import { Icone } from './Icone'
 
 const abas: (CategoriaPrato | 'Todos')[] = ['Todos', 'Lanches', 'Massas', 'Brasileiros', 'Drinks']
 
@@ -42,6 +43,9 @@ export function Cardapio() {
             </li>
           ))}
         </ul>
+        <p className="dica-arraste" aria-hidden="true">
+          Arraste para ver mais <Icone nome="seta" />
+        </p>
 
         <div className="cardapio__acoes">
           <a className="botao botao--escuro" href={contato.cardapioAlmoco} target="_blank" rel="noreferrer">

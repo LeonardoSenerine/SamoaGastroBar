@@ -11,6 +11,7 @@ import { Agenda } from './components/Agenda'
 import { Galeria } from './components/Galeria'
 import { Visite } from './components/Visite'
 import { Rodape } from './components/Rodape'
+import { BarraMobile } from './components/BarraMobile'
 import { useReveal } from './hooks/useReveal'
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
         <Visite />
       </main>
       <Rodape />
+      <BarraMobile />
     </>
   )
 }

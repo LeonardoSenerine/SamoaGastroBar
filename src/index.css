@@ -36,9 +36,16 @@
   --raio: 10px;
   --largura: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
-  --secao: clamp(80px, 11vw, 140px);
+  --secao: clamp(64px, 11vw, 140px);
+  --altura-header: 76px;
 
   color-scheme: dark;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --altura-header: 64px;
+  }
 }
 
 *,
@@ -49,7 +56,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 76px;
+  scroll-padding-top: var(--altura-header);
 }
 
 body {
@@ -61,6 +68,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img,
